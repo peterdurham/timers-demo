@@ -1,68 +1,60 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Stopwatch and Countdown timers
 
-## Available Scripts
+For this tutorial we will be using React and Javascript to build two timers, a stopwatch timer and a countdown timerBoth timers will utilize intervals in Javascript to keep track of time.
 
-In the project directory, you can run:
+## Setup
 
-### `npm start`
+To begin with, I will be using Create React App to build out the basic files we will need. Assuming you have Node installed, enter the command:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```javascript
+npx create-react-app timers-demo
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+(or whatever name you choose for your application)
 
-### `npm test`
+In order to simplify things, I will be deleting the following files in the project:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `App.test.js`
+- `index.css`
+- `logo.svg`
+- `serviceWorker.js`
 
-### `npm run build`
+After removing unnecessary code and adding a title `App.js` and `index.js` will now look like this:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`App.js`
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```javascript
+import React, { Component } from "react";
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <h1>Timers Demo</h1>
+      </div>
+    );
+  }
+}
 
-### `npm run eject`
+export default App;
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+index.js
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+ReactDOM.render(<App />, document.getElementById("root"));
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Now that the project is configured for a basic setup, we can test it out using the following command
 
-## Learn More
+```javascript
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Stopwatch timer
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The first timer we will be coding will start at 0. When the user selects the start button the stopwatch will display the time since it started in hours, minutes, seconds, and miliseconds. The user can also stop and reset the timer.
