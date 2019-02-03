@@ -107,9 +107,9 @@ startTimer = () => {
 };
 ```
 
-This function, `startTimer` will be called when the timer is started or resumed. At first, it will use the `setState` method to turn the timer on, set the timer to represent the current time, and initialize the start time. Turning the timer on, and setting the `timerStart` date to `Date.now()` would be sufficient to start the timer, but we need to also account for `this.state.timerTime` in case the user is resuming the timer.
+This function, `startTimer` will be called when the timer is started or resumed. At first, it will use the `setState` method to turn the timer on, set the timer to represent the current time, and initialize the start time. Subtracting `this.state.timerTime` from `Date.now()` will set our start time to wherever we stopped the timer if it isn't set to 0.
 
-Next in the `startTimer` function, we will initialize a timer interval with `this.timer` which binds the timer interval to the `Stopwatch` method. This interval needs to return a method to call every time it goes off, and an interval time. In our return we can call `this.setState` to adjust the current `timerTime` to the number of miliseconds since `timerStart`.
+Next in the `startTimer` function, we will initialize a timer interval with `this.timer` which binds the timer interval to the `Stopwatch` component. This interval needs to return a method to call every time it goes off, and an interval time. In our return we can call `this.setState` to adjust the current `timerTime` to the number of miliseconds since `timerStart`.
 
 ### Stop and Reset
 
