@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./App.css";
 
 class Stopwatch extends Component {
   state = {
@@ -37,15 +38,12 @@ class Stopwatch extends Component {
     let centiseconds = ("0" + (Math.floor(timerTime / 10) % 100)).slice(-2);
     let seconds = ("0" + (Math.floor(timerTime / 1000) % 60)).slice(-2);
     let minutes = ("0" + (Math.floor(timerTime / 60000) % 60)).slice(-2);
-    let hours = ("0" + (Math.floor(timerTime / 3600000) % 60)).slice(-2);
+    let hours = ("0" + Math.floor(timerTime / 3600000)).slice(-2);
     return (
       <div className="Stopwatch">
-        <h1>Stopwatch</h1>
-        <div className="Stopwatch__display">
-          <span className="Stopwatch__display--text">{hours}</span>:
-          <span className="Stopwatch__display--text">{minutes}</span>:
-          <span className="Stopwatch__display--text">{seconds}</span>:
-          <span className="Stopwatch__display--text">{centiseconds}</span>
+        <div className="Stopwatch-header">Stopwatch</div>
+        <div className="Stopwatch-display">
+          {hours} : {minutes} : {seconds} : {centiseconds}
         </div>
         {this.state.timerOn === false && this.state.timerTime === 0 && (
           <button onClick={this.startTimer}>Start</button>
