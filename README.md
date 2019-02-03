@@ -339,19 +339,18 @@ In this method we are using the `timerTime`, and `timerOn` from state enough tim
 
 Each button case will check if the name input as an argument is appropriate, and also that the `timerTime` will not increase or decrease outside of the timer boundary (0ms to 60 hours). If the conditions are met, we will call `setState` to adjust the `timerTime`
 
-If we set up the buttons now, we should be able to view and adjust our timer in the `React Devtools` in our browser. Here are the buttons I am adding to the return JSX in `Countdown.js`
+If we set up the buttons now, we should be able to view and adjust our timer in the `React Devtools` in our browser. Here I am adding a label for the Countdown timer, and the increase/decrease buttons for `hours`, `minutes`, and `seconds`:
 
 ```javascript
-<button onClick={() => this.adjustTimer("incHours")}>&#8679;</button>
-<button onClick={() => this.adjustTimer("incMinutes")}>
-            &#8679;
-          </button>
-          <button onClick={() => this.adjustTimer("incSeconds")}>
-            &#8679;
-          </button>
-<button onClick={() => this.adjustTimer("decHours")}>v</button>
-        <button onClick={() => this.adjustTimer("decMinutes")}>v</button>
-        <button onClick={() => this.adjustTimer("decSeconds")}>v</button>
+<div className="Countdown-label">Hours : Minutes : Seconds</div>
+<div className="Countdown-display">
+  <button onClick={() => this.adjustTimer("incHours")}>&#8679;</button>
+  <button onClick={() => this.adjustTimer("incMinutes")}>&#8679;</button>
+  <button onClick={() => this.adjustTimer("incSeconds")}>&#8679;</button>
+  <button onClick={() => this.adjustTimer("decHours")}>&#8681;</button>
+  <button onClick={() => this.adjustTimer("decMinutes")}>&#8681;</button>
+  <button onClick={() => this.adjustTimer("decSeconds")}>&#8681;</button>
+</div>
 
 ```
 
@@ -372,36 +371,17 @@ let hours = ("0" + Math.floor((timerTime / 3600000) % 60)).slice(-2);
 
 We will first destructure our state variables, as the will be often used inside the render method. We are also using modular arithmetic, string concatenation, and slice to represent the correct time.
 
-With the time formatted, now we can display our new variables in the JSX of our `Countdown` component:
+With the time formatted, now we can display our new variables in our `Countdown`component right between the increase buttons and the decrease buttons:
 
 ```javascript
-<div className="Countdown-label">Hours : Minutes : Seconds</div>
-<div className="Countdown-display">
-          <button onClick={() => this.adjustTimer("incHours")}>&#8679;</button>
-          <button onClick={() => this.adjustTimer("incMinutes")}>
-            &#8679;
-          </button>
-          <button onClick={() => this.adjustTimer("incSeconds")}>
-            &#8679;
-          </button>
-
-          <div className="Countdown-time">
-            {hours} : {minutes} : {seconds}
-          </div>
-
-          <button onClick={() => this.adjustTimer("decHours")}>&#8681;</button>
-          <button onClick={() => this.adjustTimer("decMinutes")}>
-            &#8681;
-          </button>
-          <button onClick={() => this.adjustTimer("decSeconds")}>
-            &#8681;
-          </button>
-        </div>
+<div className="Countdown-time">
+  {hours} : {minutes} : {seconds}
+</div>
 ```
 
 The last thing we need to add for the `Countdown` to be functional in the browser is our `start`, `stop`, `resume`, and `reset`, buttons.
 
-The logic for our buttons will be slightly more complicated to ensure we are displaying the correct ones at the corret times.
+The logic for our buttons will be slightly more complicated to ensure we are displaying them correctly.
 
 ```javascript
 {
@@ -428,8 +408,72 @@ The logic for our buttons will be slightly more complicated to ensure we are dis
 }
 ```
 
-Congratulations on setting up the timers, with our functionality out of the way, we now need some styling for our components, and a way to display them conditionally in our `App`.
+Congratulations on setting up the timers, with our functionality out of the way, we can now set some styling for our components. I have added the following css to `App.css`. Feel free to copy these styles, or make your own!
+
+```javascript
+.App {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
+.App-title {
+  font-size: 50px;
+  margin: 30px 0;
+}
+
+.Timers {
+  display: flex;
+  justify-content: center;
+}
+.Countdown,
+.Stopwatch {
+  margin-left: 20px;
+  margin-right: 20px;
+  border: 2px solid grey;
+  border-radius: 4px;
+  padding: 20px;
+}
+.Countdown-header,
+.Stopwatch-header {
+  font-size: 30px;
+  font-weight: bold;
+}
+button {
+  background-color: #202b33;
+  border: solid 1px transparent;
+  border-radius: 4px;
+  padding: 5px 15px;
+  color: #ffffff;
+  font-size: 16px;
+  margin: 0 5px;
+}
+.Stopwatch-display {
+  padding: 40px 0;
+  font-size: 36px;
+}
+.Stopwatch-text {
+}
+.Countdown-display {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.Countdown-display button {
+  margin: 0 15px;
+  border: solid 1px transparent;
+  border-radius: 4px;
+  padding: 5px 10px;
+  color: #ffffff;
+  background-color: #106ba3;
+  font-size: 16px;
+}
+.Countdown-label {
+  font-size: 16px;
+  margin-top: 5px;
+}
+.Countdown-time {
+  font-size: 36px;
+  margin: 5px 0;
+}
 
 ```
 
-```
+Thanks for following along in this tutorial, I hope you learned something about using intervals to make timers in Javascript! Stay tuned for more tutorials about Javascript concepts and projects.
