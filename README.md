@@ -1,3 +1,35 @@
+# :watch: Stopwatch and Countdown Timers
+
+Timers built using intervals in Javascript and **React**.
+
+A full tutorial for the application can be found below.
+
+Both timers can start, stop, resume, and reset.
+
+![timers](http://www.peterdurham.site/images/site-images/projects/timers.jpg)
+
+## Instructions
+
+To install, clone or download the repository.
+in the project folder, run the command
+
+```javascript
+npm install
+```
+
+then
+
+```javascript
+npm start
+```
+
+to run the app in development mode
+
+## Tools
+
+This project was built using **Create-React-App**  
+This project is hosted on **Github Pages [here](https://peterdurham.github.io/timers-demo/)**
+
 # Stopwatch and Countdown timers
 
 For this tutorial we will be using React and Javascript to build two timers, a stopwatch timer and a countdown timer. Both timers will utilize intervals in Javascript to keep track of time.

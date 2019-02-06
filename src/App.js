@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import Stopwatch from "./Stopwatch";
-import Countdown from "./Countdown";
+import Stopwatch from "./components/Stopwatch";
+import Countdown from "./components/Countdown";
 
 class App extends Component {
   render() {
